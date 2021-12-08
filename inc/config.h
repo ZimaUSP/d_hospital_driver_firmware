@@ -117,12 +117,12 @@
 
 #define FILTER              0.1  // lower value == softer filter. do not use values <0.01, you will get float precision issues.
 #define SPEED_COEFFICIENT   0.5  // higher value == stronger. 0.0 to ~2.0?
-#define STEER_COEFFICIENT   0.5  // higher value == stronger. if you do not want any steering, set it to 0.0; 0.0 to 1.0
+#define STEER_COEFFICIENT   0.7  // higher value == stronger. if you do not want any steering, set it to 0.0; 0.0 to 1.0
 #define INVERT_R_DIRECTION
 #define INVERT_L_DIRECTION
 //#define SWITCH_WHEELS            // switch right and left wheel. Watch out, you probably also need to invert directions.
 
-#define BEEPS_BACKWARD 1    // 0 or 1
+#define BEEPS_BACKWARD 0    // 0 or 1
 
 //Turbo boost at high speeds while button1 is pressed:
 //#define ADDITIONAL_CODE if (button1 && speedR > 700) { /* field weakening at high speeds */  weakl = cmd1 - 700; /* weak should never exceed 400 or 450 MAX!! */  weakr = cmd1 - 700; } else {  weakl = 0;  weakr = 0; }

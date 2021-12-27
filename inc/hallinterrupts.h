@@ -32,10 +32,18 @@
 #define HALL_SPEED_CALIBRATION 256000.0
 // 10khz timer
 #define HALL_INTERRUPT_TIMER_FREQ 100000
-
-#define HALL_POSN_PER_REV 90
 #define DEFAULT_WHEEL_SIZE_INCHES 6.5
+#define HALL_POSN_PER_REV 90
+//#define PROBLEM_WHEEL
 
+#ifdef PROBLEM_WHEEL
+    #define ERRO_WHEEL_FIX 3
+#else
+    #define ERRO_WHEEL_FIX 1
+#endif
+    
+#define HALL_POSN_PER_REV_RIGHT HALL_POSN_PER_REV/ERRO_WHEEL_FIX
+#define HALL_POSN_PER_REV_LEFT HALL_POSN_PER_REV
 //////////////////////////////////////////////////////////////
 // this is the Hall data we gather, and can be read elsewhere
 // one for each wheel

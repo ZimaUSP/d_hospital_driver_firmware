@@ -213,6 +213,8 @@ int main(void) {
     HAL_UART_Receive_DMA(&huart3, (uint8_t *)&command, sizeof(command));
   #endif
 
+  
+
   #ifdef DEBUG_I2C_LCD
     I2C_Init();
     HAL_Delay(50);
@@ -415,12 +417,8 @@ int main(void) {
     #endif
     }
 
-
-
-
     lastSpeedL = speedL;
     lastSpeedR = speedR;
-
 
     if (inactivity_timeout_counter % 25 == 0) {
       // ####### CALC BOARD TEMPERATURE #######
@@ -429,15 +427,15 @@ int main(void) {
 
       // ####### DEBUG SERIAL OUT #######
       #ifdef CONTROL_ADC
-        setScopeChannel(0, (int)adc_buffer.l_tx2);  // 1: ADC1
-        setScopeChannel(1, (int)adc_buffer.l_rx2);  // 2: ADC2
+        setScopeChannel(0, ((int)HallData[0].HallPosn_mm));  // 1: posicao mm right
+        setScopeChannel(1, ((int)HallData[1].HallPosn_mm));  // 2: posicao mm left
       #endif
-      setScopeChannel(2, (int)speedR);  // 3: output speed: 0-1000
-      setScopeChannel(3, (int)speedL);  // 4: output speed: 0-1000
-      setScopeChannel(4, (int)adc_buffer.batt1);  // 5: for battery voltage calibration
-      setScopeChannel(5, (int)(batteryVoltage * 100.0f));  // 6: for verifying battery voltage calibration
-      setScopeChannel(6, (int)board_temp_adc_filtered);  // 7: for board temperature calibration
-      setScopeChannel(7, (int)board_temp_deg_c);  // 8: for verifying board temperature calibration
+      setScopeChannel(2, (int)HallData[0].HallSpeed_mm_per_s);  // 3: output speed right
+      setScopeChannel(3, (int)HallData[1].HallSpeed_mm_per_s);  // 4: output speed left 
+      setScopeChannel(4, (int)(batteryVoltage * 100.0f));  // 6: for verifying battery voltage calibration
+      //setScopeChannel(5, (int)adc_buffer.batt1);  // 5: for battery voltage calibration
+      //setScopeChannel(6, (int)board_temp_adc_filtered);  // 7: for board temperature calibration
+      //setScopeChannel(7, (int)board_temp_deg_c);  // 8: for verifying board temperature calibration
       consoleScope();
     }
 
@@ -516,11 +514,12 @@ int main(void) {
     if (powerofftimer > 0){
       powerofftimer --;
 
+
       // spit a msg every 2 seconds
       if (!(powerofftimer % (2000/DELAY_IN_MAIN_LOOP))){
-        char tmp[30];
-        sprintf(tmp, "power off in %ds\r\n", (powerofftimer*DELAY_IN_MAIN_LOOP)/1000 );
-        consoleLog(tmp);
+        //char tmp[30];
+        //sprintf(tmp, "power off in %ds\r\n", (powerofftimer*DELAY_IN_MAIN_LOOP)/1000 );
+        //consoleLog(tmp);
       }
 
       if (powerofftimer <= 10000/DELAY_IN_MAIN_LOOP){

@@ -86,8 +86,8 @@ void HallInterruptinit(void){
     WheelSize_mm = (WHEEL_SIZE_INCHES * 25.4);
     #endif
 
-    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
-    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
+    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_RIGHT);
+    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_LEFT);
 
     // setup TIM4:
     __HAL_RCC_TIM4_CLK_ENABLE();
@@ -118,15 +118,15 @@ void HallInterruptinit(void){
 // optionaly change the wheel diameter fromt he default of 6.5" using inches
 void HallInterruptSetWheelDiameterInches(float inches){
     WheelSize_mm = inches * 25.4;
-    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
-    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
+    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_RIGHT);
+    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_LEFT);
 }
 //////////////////////////////////////////////////////////////
 // optionaly change the wheel diameter fromt he default of 6.5" using mm
 void HallInterruptSetWheelDiameterMM(float mm){
     WheelSize_mm = mm;
-    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
-    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
+    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_RIGHT);
+    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_LEFT);
 }
 
 //////////////////////////////////////////////////////////////
@@ -143,8 +143,8 @@ void HallInterruptReset(){
     local_hall_params[0].direction = -1;
     local_hall_params[1].direction = 1;
 
-    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
-    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV);
+    HallData[0].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_RIGHT);
+    HallData[1].HallPosnMultiplier = (float)((WheelSize_mm*3.14159265359)/(float)HALL_POSN_PER_REV_LEFT);
     HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
     HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 }

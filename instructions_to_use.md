@@ -46,8 +46,6 @@ License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 ```
-
-
 Algo parecido com isso deve aparecer no seu prompt de comando:
 
 ```
@@ -59,3 +57,61 @@ Configured with: /msys_scripts/gcc/src/gcc-6.4.0/configure --build=x86_64-pc-msy
 Thread model: posix
 gcc version 6.4.0 (GCC)
 ```
+### ARM-GCC
+
+Faça o download do [ARM-GCC](https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2019q4/gcc-arm-none-eabi-9-2019-q4-major-win32-sha2.exe?revision=ba95cefa-1880-4932-94d4-ebf30ad3f619&la=en&hash=CA3C442615B4FB102CE8B471DF9ED1E057496060) e instale normalmente.
+
+Após isso, é preciso colocar a pasta do arm-gcc nas variáveis de ambiente do Windows, assim como foi feito pro MSYS. Para isso, faça:
+1. Pesquise variáveis de ambiente e clique em "Editar as variáveis de ambiente do sistema". Ou, vá para Painel de Controle > Sistema e Segurança > Sistema > Configurações avançadas do sistema.
+2. Na janela que abriu, clique em "Variáveis de ambiente".
+3. Na parte de "Variáveis do sistema", encontra a variável Path, selecione-a e clique em "Editar".
+4. Clique em "Novo".
+5. Digite o caminho para os executáveis do ARM-GCC (provavelmente C:\Program Files (x86)\GNU Tools ARM Embedded\8 2018-q4-major\bin).
+6. Clique em "OK".
+
+Para o arm-gcc, digite:
+
+```bash
+arm-none-eabi-gcc --version
+```
+
+Algo parecido com isso deve aparecer no seu prompt de comando:
+
+```
+arm-none-eabi-gcc.exe (GNU Tools for Arm Embedded Processors 8-2018-q4-major) 8.2.1 20181213 (release) [gcc-8-branch revision 267074]
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+```
+
+## STM32CubeMX e STM32CubeProgrammer
+
+Para instalar o [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html) e o [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html), faça o download clicando em "Get Software" (será necessário criar uma conta no site da ST) e instale normalmente. Adicione o caminho do CubeProgrammer (normalmente C:\Program Files (x86)\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin) na variável de ambiente Path, como feito anteriormente para o msys2 e arm-gcc. Para o CubeMX, será necessário criar uma nova variável com o nome CUBE_PATH:
+1. Na janela de Variáveis de Ambiente, clique em "Novo"
+2. Digite CUBE_PATH como nome da variável
+3. Coloque o caminho do CubeMX como valor da variável (normalmente C:\Program Files (x86)\STMicroelectronics\STM32Cube\STM32CubeMX)
+4. Clique em Ok. A variável deverá aparecer na lista de variáveis de ambiente.
+
+Pra ver o CubeProgrammer está no PATH, abra um terminal qualquer e rode:
+
+```bash
+STM32_Programmer_CLI --version
+```
+
+Algo assim deve aparecer:
+
+```bash
+      -------------------------------------------------------------------
+                        STM32CubeProgrammer v2.2.1                  
+      -------------------------------------------------------------------
+
+STM32CubeProgrammer version: 2.2.1 
+```
+
+Para ver se a variável `CUBE_PATH` foi criada corretamente, abra um terminal e rode:
+
+```bash
+echo %CUBE_PATH%
+```
+
+O caminho até o executável do CubeMX que você colocou será mostrado se tudo estiver correto.

@@ -84,7 +84,7 @@ This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```
 
-## STM32CubeMX e STM32CubeProgrammer
+### STM32CubeMX e STM32CubeProgrammer
 
 Para instalar o [STM32CubeMX](https://www.st.com/en/development-tools/stm32cubemx.html) e o [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html), faça o download clicando em "Get Software" (será necessário criar uma conta no site da ST) e instale normalmente. Adicione o caminho do CubeProgrammer (normalmente C:\Program Files (x86)\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin) na variável de ambiente Path, como feito anteriormente para o msys2 e arm-gcc. Para o CubeMX, será necessário criar uma nova variável com o nome CUBE_PATH:
 1. Na janela de Variáveis de Ambiente, clique em "Novo"
